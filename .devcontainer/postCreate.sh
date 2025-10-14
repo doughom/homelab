@@ -11,4 +11,4 @@ pip install --require-hashes -r .devcontainer/requirements.txt
 pre-commit install --install-hooks
 
 # Activate venv always
-echo source venv/bin/activate >> "$HOME/.bashrc"
+echo source venv/bin/activate | tee -a "$HOME/.bashrc"
