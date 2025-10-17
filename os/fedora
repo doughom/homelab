@@ -1,15 +1,18 @@
-# Text mode installation uses less RAM
+# Text mode installation to minimize RAM usage
 text
 
-# Console and environment
+
+# Language and region
 keyboard --xlayouts=us
 lang en_US.UTF-8
 timezone Etc/UTC --utc
 
-# network --bootproto=dhcp
-url --mirrorlist="https://mirrors.fedoraproject.org/metalink?repo=fedora-$releasever&arch=$basearch"
 
-bootloader --append="rhgb quiet crashkernel=1G-4G:192M,4G-64G:256M,64G-:512M"
+url --mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=fedora-$releasever&arch=$basearch
+
+
+# Storage
+bootloader --append="crashkernel=1G-4G:192M,4G-64G:256M,64G-:512M"
 zerombr
 clearpart --all --initlabel
 
@@ -26,24 +29,33 @@ logvol /var/tmp       --fstype=xfs --size=1024   --vgname=root --name=var_tmp   
 logvol /var           --fstype=xfs --size=3072   --vgname=root --name=var           --fsoptions=nodev,nosuid
 logvol /              --fstype=xfs --percent=100 --vgname=root --name=root
 
+
+# Users
 rootpw --lock
 user --groups=wheel --name=dh --password=ChangeMe
 sshkey --username=dh "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBHeId7Tvt4q9OkBykR3zGShgxhX94sO2+G2oJIDm5GI4M+2GwJn6cfHzLthVzdRu+lB931yznpKJMT3JM5x0QCQ="
 
+
+# Security
+firewall --enabled --ssh
+selinux --enforcing
+
+
 %addon com_redhat_kdump --enable
 %end
+
 
 %packages
 @core
 @guest-agents
 %end
 
-selinux --enforcing
-firewall --enabled --ssh
-firstboot --disable
-reboot --eject
 
 %post
+passwd --expire dh
 echo "PasswordAuthentication no" > /etc/ssh/sshd_config.d/99-homelab.conf
 echo "\4" >> /etc/issue
 %end
+
+
+reboot --eject
