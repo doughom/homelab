@@ -1,12 +1,12 @@
-# Boot option: inst.ks=https://example.com/ks.cfg
-
+# Text mode installation uses less RAM
 text
 
+# Console and environment
 keyboard --xlayouts=us
 lang en_US.UTF-8
 timezone Etc/UTC --utc
 
-network --bootproto=dhcp
+# network --bootproto=dhcp
 url --mirrorlist="https://mirrors.fedoraproject.org/metalink?repo=fedora-$releasever&arch=$basearch"
 
 bootloader --append="rhgb quiet crashkernel=1G-4G:192M,4G-64G:256M,64G-:512M"
