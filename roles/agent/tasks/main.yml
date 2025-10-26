@@ -1,0 +1,26 @@
+---
+- name: Ansible Agent Service
+  ansible.builtin.template:
+    src: agent.j2
+    dest: /etc/systemd/system/ansible-agent.service
+    owner: root
+    group: root
+    mode: 0644
+    setype: etc_t
+  notify: Reload systemd
+
+- name: Ansible Agent Timer
+  ansible.builtin.copy:
+    src: agent.timer
+    dest: /etc/systemd/system/ansible-agent.timer
+    owner: root
+    group: root
+    mode: 0644
+    setype: etc_t
+  notify: Reload systemd
+
+- name: Ansible Agent Timer
+  ansible.builtin.systemd_service:
+    name: ansible-agent
+    enabled: true
+    state: started

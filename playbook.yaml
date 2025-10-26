@@ -1,0 +1,5 @@
+---
+- name: Homelab
+  hosts: agent
+  roles:
+    - agent
