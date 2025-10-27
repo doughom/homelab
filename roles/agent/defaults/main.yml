@@ -1,5 +1,5 @@
 ---
-git_ref: main
-git_url: https://github.com/doughom/homelab
-inventory_groups:
+agent_git_ref: main
+agent_git_url: https://github.com/doughom/homelab
+agent_inventory_groups:
   - agent

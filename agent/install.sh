@@ -85,7 +85,7 @@ groups=$(echo "$ansibleGroups" | sed "s/,$//g")
   --url "$gitUrl" \
   --checkout "$gitRef" \
   --inventory "$inventory" \
-  --extra-vars "{\"inventory_groups\": [\"${groups//,/\",\"}\"], \"git_url\": \"$gitUrl\", \"git_ref\": \"$gitRef\"}" \
+  --extra-vars "{\"agent_inventory_groups\": [\"${groups//,/\",\"}\"], \"agent_git_url\": \"$gitUrl\", \"agent_git_ref\": \"$gitRef\"}" \
   playbook.yml
 
 rm "$inventory"
