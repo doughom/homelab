@@ -1,0 +1,12 @@
+[Unit]
+Description=Ansible Agent
+After=network.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/etc/ansible-agent
+EnvironmentFile=/etc/ansible-agent/env
+ExecStart=/usr/local/ansible-agent/bin/ansible-pull --url ${GIT_URL} --checkout ${GIT_REF} --inventory /etc/ansible-agent/inventory playbook.yml
+
+[Install]
+WantedBy=multi-user.target
