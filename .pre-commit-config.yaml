@@ -29,6 +29,12 @@ repos:
       - id: ansible-lint
         language_version: python3.12
 
+  - repo: https://github.com/doughom/pre-commit-hooks
+    rev: ffe9692e238376e15540a98b35ee9b8716054486 # v0.1.0
+    hooks:
+      - id: shellcheck
+      - id: shfmt
+
   - repo: local
     hooks:
       - id: prettier
