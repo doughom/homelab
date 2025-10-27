@@ -1,0 +1,4 @@
+{% for group in agent_inventory_groups %}
+[{{ group }}]
+{{ ansible_hostname }}
+{% endfor %}

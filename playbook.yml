@@ -1,0 +1,6 @@
+---
+- name: Ansible Agent
+  become: true
+  hosts: agent
+  roles:
+    - agent

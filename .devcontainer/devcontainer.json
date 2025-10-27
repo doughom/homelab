@@ -2,7 +2,15 @@
   "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bookworm",
   "postCreateCommand": ".devcontainer/postCreate.sh",
   "features": {
-    "ghcr.io/devcontainers/features/node:1": {}
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/doughom/features/shellcheck:1": {
+      "tag": "v0.11.0",
+      "hash": "12b331c1d2db6b9eb13cfca64306b1b157a86eb69db83023e261eaa7e7c14588,8c3be12b05d5c177a04c29e3c78ce89ac86f1595681cab149b65b97c4e227198"
+    },
+    "ghcr.io/doughom/features/shfmt:1": {
+      "tag": "v3.12.0",
+      "hash": "d9fbb2a9c33d13f47e7618cf362a914d029d02a6df124064fff04fd688a745ea,5f3fe3fa6a9f766e6a182ba79a94bef8afedafc57db0b1ad32b0f67fae971ba4"
+    }
   },
   "customizations": {
     "vscode": {
